@@ -20,7 +20,7 @@ class PowerSet
     int quantity = 0;  // sum of list items
   
     for (int i = 0; i < Size; i++)
-	      quantity += slots[i].size();			
+	quantity += slots[i].size();			
     return quantity;
   }
 
@@ -36,29 +36,25 @@ class PowerSet
     int char_lengh = strlen(value); 	
     char* val = new char[char_lengh];		
     strcpy (val, value);
-
     slots[index].push_back(val);	    
   }
 
   bool get(char* value)
-  { 
-	  int index = hashFun_CHAR(value);			//get index
-	  
+  {
+    int index = hashFun_CHAR(value);			//get index
     list<char*> List = slots[index];
-
-	  for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
     {			
       char* _val = *_list;
       if ( strcmp(value, _val) == 0)	    // compare			  
-				  return true;
+	return true;
     }     
-	  return false;
+    return false;
   }
   
   bool remove(char* value)
   {
-    int index = hashFun_CHAR(value);
-    
+    int index = hashFun_CHAR(value);    
     if (index != -1)
     {      
       char* _value = find(value);
@@ -73,12 +69,11 @@ class PowerSet
 
   PowerSet* intersection(PowerSet* set2)
   {
-    PowerSet* new_set = new PowerSet;
- 
+    PowerSet* new_set = new PowerSet; 
     for (int i = 0; i < Size; i++)
     {
       list<char*> List = slots[i];
-	    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+      for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
       {			
         char* _val = *_list;            // cell contents
         if ( set2->get(_val) )          // if "set2" contains "_val"
@@ -90,12 +85,11 @@ class PowerSet
 
   PowerSet* _union(PowerSet* set2)
   {
-    PowerSet* new_set = new PowerSet;
-    
+    PowerSet* new_set = new PowerSet;    
     for (int i = 0; i < Size; i++)        //copy set to new_set
     {
       list<char*> List = slots[i];      
-	    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+      for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
       {			
         char* _val = *_list;              
         new_set->put(_val);            
@@ -104,7 +98,7 @@ class PowerSet
     for (int i = 0; i < set2->Size; i++)  //copy set2 to new_set if value is not found
     {
       list<char*> List = set2->slots[i];      
-	    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+      for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
       {			
         char* _val = *_list; 
           new_set->put(_val);         
@@ -116,30 +110,26 @@ class PowerSet
   PowerSet* difference(PowerSet* set2)
   {
     PowerSet* new_set = new PowerSet;
- 
     for (int i = 0; i < Size; i++)
     {
       list<char*> List = slots[i];
-	    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+      for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
       {			
         char* _val = *_list;            
         if ( !set2->get(_val) )          
           new_set->put(_val);           
       }
     }
-
     for (int i = 0; i < set2->Size; i++)
     {
       list<char*> List = set2->slots[i];
-	    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+      for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
       {			
         char* _val = *_list;            
         if ( !get(_val) )          
           new_set->put(_val);           
       }
     }
-
-
     return new_set;
   }
 
@@ -148,7 +138,7 @@ class PowerSet
     for (int i = 0; i < Size; i++)
     {
       list<char*> List = set2->slots[i];
-	    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+      for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
       {			
         char* _val = *_list;            
         if ( !get(_val) )        
@@ -162,17 +152,13 @@ private:
   int hashFun_CHAR(char* value)
   {    
     if (value == NULL)
-		  return -1;
-	  int index = 0;	 
+      return -1;
+    int index = 0;	 
     index = (int)value[0];
-
     for (int i = 1; value[i] != 0; i++)  // adder of sumbols    
-      index += (int)value[i];
-    
-    if (index < 0) index *= -1;          // number modulus
-    
-    index = hashFun_INT(index, Size);
-   
+      index += (int)value[i];    
+    if (index < 0) index *= -1;          // number modulus    
+    index = hashFun_INT(index, Size);  
     return index;
   }
 
@@ -181,8 +167,8 @@ private:
 	  if (value == NULL)
 		  return -1;
 	  int p = 17; // Prime number
-	  int a = 9;  // 1 ... ð-1
-	  int b = 5;  // 0 ... ð-1
+	  int a = 9;  // 1 ... Ã°-1
+	  int b = 5;  // 0 ... Ã°-1
 	  int index = ( (a*value + b) % p ) % size;
 	  return index;
   }
@@ -197,7 +183,7 @@ private:
   { 
 	  int index = hashFun_CHAR(value);				//get index
     list<char*> List = slots[index];
-	  for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
+    for (list<char*>::iterator _list = List.begin(); _list != List.end(); ++_list)
     {			
       char* _val = *_list;
       if ( strcmp(value, _val) == 0)	      // compare			  
