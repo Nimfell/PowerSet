@@ -164,7 +164,7 @@ private:
 
   int hashFun_INT(int value, int size)
   {    
-	  if (value == NULL)
+	  if (value == -1)
 		  return -1;
 	  int p = 17; // Prime number
 	  int a = 9;  // 1 ... ð-1
